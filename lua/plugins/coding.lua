@@ -89,9 +89,26 @@ return {
 
 	{
 		"nvim-cmp",
-		dependencies = { "hrsh7th/cmp-emoji" },
+		dependencies = {
+			"hrsh7th/cmp-emoji" ,
+	    -- codeium
+			{
+				"Exafunction/codeium.nvim",
+				cmd = "Codeium",
+				build = ":Codeium Auth",
+				opts = {},
+			},},
 		opts = function(_, opts)
 			table.insert(opts.sources, { name = "emoji" })
+			 ---@param opts cmp.ConfigSchema
+			table.insert(opts.sources, 1, {
+				name = "codeium",
+				group_index = 1,
+				priority = 100,
+			})
 		end,
 	},
+	{
+
+	}
 }
