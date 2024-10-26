@@ -45,3 +45,20 @@ vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 if vim.fn.has("nvim-0.8") == 1 then
 	vim.opt.cmdheight = 0
 end
+
+
+local actions = require('telescope.actions')
+
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<CR>"] = actions.select_tab, -- Open in a new tab when pressing Enter in insert mode
+      },
+      n = {
+        ["<CR>"] = actions.select_tab, -- Open in a new tab when pressing Enter in normal mode
+      },
+    },
+  },
+}
+

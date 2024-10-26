@@ -124,6 +124,7 @@ return {
 	-- statusline
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		opts = function(_, opts)
 			local LazyVim = require("lazyvim.util")
 			opts.sections.lualine_c[4] = {

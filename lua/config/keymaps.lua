@@ -53,10 +53,10 @@ keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
 
 -- Resize window
-keymap.set("n", "<C-w><left>", "<C-w><")
-keymap.set("n", "<C-w><right>", "<C-w>>")
-keymap.set("n", "<C-w><up>", "<C-w>+")
-keymap.set("n", "<C-w><down>", "<C-w>-")
+keymap.set("n", "<C-w><left>", ":vertical resize -20<CR>", opts)  -- 向左减少 20 列
+keymap.set("n", "<C-w><right>", ":vertical resize +20<CR>", opts) -- 向右增加 20 列
+keymap.set("n", "<C-w><up>", ":resize +10<CR>", opts)    -- 向上增加 10 行
+keymap.set("n", "<C-w><down>", ":resize -10<CR>", opts)  -- 向下减少 10 行
 
 -- Diagnostics
 keymap.set("n", "<C-j>", function()

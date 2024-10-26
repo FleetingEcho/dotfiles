@@ -10,6 +10,8 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+vim.bo.modifiable = true
+
 
 require("lazy").setup({
 	spec = {
@@ -25,7 +27,6 @@ require("lazy").setup({
 				},
 			},
 		},
-		-- { import = "lazyvim.plugins.extras.vscode" },
 		-- import any extras modules here
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
