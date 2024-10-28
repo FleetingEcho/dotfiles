@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
+vim.opt.nu = true -- enable line numbers
+vim.opt.relativenumber = true -- relative line numbers
 
 vim.opt.number = true
 
@@ -15,7 +17,7 @@ vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
--- vim.opt.shell = "fish"
+vim.opt.shell = "fish"
 vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
@@ -46,19 +48,54 @@ if vim.fn.has("nvim-0.8") == 1 then
 	vim.opt.cmdheight = 0
 end
 
+-- Paste from https://github.com/zazencodes/dotfiles/blob/main/nvim/lua/options.lua
 
-local actions = require('telescope.actions')
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = "*.py",
+  callback = function()
+    vim.opt.textwidth = 79
+    vim.opt.colorcolumn = "79"
+  end
+}) -- python formatting
 
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ["<CR>"] = actions.select_tab, -- Open in a new tab when pressing Enter in insert mode
-      },
-      n = {
-        ["<CR>"] = actions.select_tab, -- Open in a new tab when pressing Enter in normal mode
-      },
-    },
-  },
-}
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = {"*.js", "*.html", "*.css", "*.lua"},
+  callback = function()
+    vim.opt.tabstop = 2
+    vim.opt.softtabstop = 2
+    vim.opt.shiftwidth = 2
+  end
+}) -- javascript formatting
 
+
+local HighlightYank = vim.api.nvim_create_augroup('HighlightYank', {})
+vim.api.nvim_create_autocmd('TextYankPost', {
+    group = HighlightYank,
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
+    end,
+}) -- highlight yanked text using the 'IncSearch' highlight group for 40ms
+
+
+local CleanOnSave = vim.api.nvim_create_augroup('CleanOnSave', {})
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  group = CleanOnSave,
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
+}) -- remove trailing whitespace from all lines before saving a file)
+
+
+local RuffSort = vim.api.nvim_create_augroup("RuffSort", { clear = true })
+vim.api.nvim_create_autocmd("bufWritePost", {
+  group = RuffSort,
+  pattern = "*.py",
+  callback = function()
+    vim.cmd("silent !ruff check --select I --fix %")
+    vim.cmd("silent !ruff format %")
+  end,
+
+})

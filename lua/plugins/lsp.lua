@@ -34,7 +34,6 @@ return {
 						return require("lspconfig.util").root_pattern(".git")(...)
 					end,
 					single_file_support = false,
-					capabilities = vim.lsp.protocol.make_client_capabilities(),
 					settings = {
 						typescript = {
 							inlayHints = {
@@ -73,7 +72,6 @@ return {
 					single_file_support = true,
 					settings = {
 						Lua = {
-							renameProvider = true,
 							workspace = {
 								checkThirdParty = false,
 							},

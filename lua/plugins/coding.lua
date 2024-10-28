@@ -17,19 +17,8 @@ return {
 	-- Incremental rename
 	{
 		"smjonas/inc-rename.nvim",
-		keys = {
-			{
-				"cr",
-				function()
-					return ":IncRename " .. vim.fn.expand("<cword>")
-				end,
-				mode = "n",  -- Normal 模式
-				noremap = true,
-				silent = true,
-				expr = true,
-			},
-		},
-		opts = {},
+		cmd = "IncRename",
+		config = true,
 	},
 
 	-- Refactoring tool
@@ -100,14 +89,13 @@ return {
 
 	{
 		"nvim-cmp",
-		dependencies = {
-		"hrsh7th/cmp-emoji" ,
+		dependencies = { "hrsh7th/cmp-emoji" ,
 		{
-			"Exafunction/codeium.nvim",
-			cmd = "Codeium",
-			build = ":Codeium Auth",
-			opts = {},
-		},
+      "Exafunction/codeium.nvim",
+      cmd = "Codeium",
+      build = ":Codeium Auth",
+      opts = {},
+    }
 	},
 		opts = function(_, opts)
 			table.insert(opts.sources, { name = "emoji" })
@@ -115,7 +103,7 @@ return {
 				name = "codeium",
 				group_index = 1,
 				priority = 100,
-			  })
+			})
 		end,
 	},
 }
