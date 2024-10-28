@@ -1,8 +1,15 @@
-# LazyVim & Tmux & Starship
+# LazyVim & Tmux & Starship & Fish
 > Leader 键是空格
 
 ## Folder
 `~/.config`
+
+
+## Fish shell
+- `brew install fish starship fzf`
+- `source ~/.config/fish/config.fish`
+
+
 
 ## Lazyvim
 ```shell
@@ -72,34 +79,35 @@ Telescope 文件操作
 
 ##  Tmux commands
 
+>Leader is Ctrl+t
 #### 基本操作
 - 启动 tmux：`tmux`
 - 启动并命名会话：`tmux new -s session_name`
 - 列出会话：`tmux ls`
 - 附加到已有会话：`tmux attach -t session_name`
 - 删除已有会话：`tmux kill-session -t session_name`
-- 离开会话：按下 `Ctrl + b`，然后按 `d`（会话继续运行）
+- 离开会话：按下 `Ctrl + t`，然后按 `d`（会话继续运行）
 - 关闭会话：输入 `exit` 或 `Ctrl + d` 关闭当前的 tmux 窗口
 - 关闭所有会话：`tmux kill-server`
-- 重命名会话：`Ctrl + b` 然后按 `$`
+- 重命名会话：`Ctrl + t` 然后按 `$`
 - 删除会话：附加到会话中并输入 `exit`
 
 #### 窗口管理
-- 新建窗口：`Ctrl + b` 然后按 `c`
-- 切换窗口：`Ctrl + b` 然后按窗口编号或 `n`（下一个窗口），`p`（上一个窗口）
-- 重命名窗口：`Ctrl + b` 然后按 `,`，输入新名称
-- 关闭窗口：`Ctrl + b` 然后按 `&`
+- 新建窗口：`Ctrl + t` 然后按 `c`
+- 切换窗口：`Ctrl + t` 然后按窗口编号或 `n`（下一个窗口），`p`（上一个窗口）
+- 重命名窗口：`Ctrl + t` 然后按 `,`，输入新名称
+- 关闭窗口：`Ctrl + t` 然后按 `&`
 
 #### 窗格（Pane）管理
-- 拆分水平窗格：`Ctrl + b` 然后按 `"`
-- 拆分垂直窗格：`Ctrl + b` 然后按 `%`
-- 切换窗格：`Ctrl + b` 然后按方向键或 `o`（切换到下一个窗格）
-- 调整窗格大小：`Ctrl + b` 然后按方向键，按住 `Ctrl` 键以更大幅度调整
+- 拆分水平窗格：`Ctrl + t` 然后按 `"`
+- 拆分垂直窗格：`Ctrl + t` 然后按 `%`
+- 切换窗格：`Ctrl + t` 然后按方向键或 `o`（切换到下一个窗格）
+- 调整窗格大小：`Ctrl + t` 然后按方向键，按住 `Ctrl` 键以更大幅度调整
 - 关闭窗格：在窗格中输入 `exit`，或按 `Ctrl + d`
 
 #### 其他快捷键
-- 查看 tmux 指令列表：`Ctrl + b` 然后按 `?`
-- 重新加载配置文件：`Ctrl + b` 然后输入 `:source-file ~/.tmux.conf`
+- 查看 tmux 指令列表：`Ctrl + t` 然后按 `?`
+- 重新加载配置文件：`Ctrl + t` 然后输入 `:source-file ~/.tmux.conf`
 
 
 
