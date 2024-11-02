@@ -70,3 +70,15 @@ end)
 keymap.set("n", "<leader>i", function()
 	require("craftzdog.lsp").toggleInlayHints()
 end)
+
+-- +p to paste
+keymap.set("n", "<Leader>p", '"+p', opts)
+keymap.set("v", "<Leader>p", '"+p', opts)
+
+--  Ctrl + Shift + V to paste
+keymap.set("n", "<C-S-v>", '"+p', opts)
+keymap.set("i", "<C-S-v>", '<Esc>"+pa', opts)
+
+--  Ctrl + Shift + X to cut
+keymap.set("v", "<C-S-x>", '"+d', opts)
+keymap.set("i", "<C-S-x>", '<Esc>"+d', opts)
