@@ -35,6 +35,7 @@ return {
 			},
 			"nvim-telescope/telescope-file-browser.nvim",
 		},
+
 		keys = {
 			{
 				"<leader>fP",
@@ -82,6 +83,7 @@ return {
 				layout_config = { prompt_position = "top" },
 				sorting_strategy = "ascending",
 				winblend = 0,
+				hidden = true,  -- make sure hidden files can be shown
 				mappings = {
 					n = {},
 				},
@@ -129,4 +131,5 @@ return {
 			require("telescope").load_extension("file_browser")
 		end,
 	}
+
 }

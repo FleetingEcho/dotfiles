@@ -81,10 +81,10 @@ return {
 		},
 		opts = {
 			options = {
-				mode = "buffers",               -- Treat each buffer as a tab in the UI
+				mode = "buffers",  -- or buffers
 				show_buffer_close_icons = false,
 				show_close_icon = false,
-				always_show_bufferline = true,  -- Keep bufferline visible
+				always_show_bufferline = true,
 			},
 		},
 	},

@@ -9,7 +9,6 @@ return {
 				"cmake",
 				"cpp",
 				"css",
-				"zsh",
 				"gitignore",
 				"go",
 				"graphql",
