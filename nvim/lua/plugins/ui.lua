@@ -71,7 +71,7 @@ return {
 		end,
 	},
 
-	-- buffer line
+
 	{
 		"akinsho/bufferline.nvim",
 		event = "VeryLazy",
@@ -81,61 +81,84 @@ return {
 		},
 		opts = {
 			options = {
-				mode = "tabs",
-				-- separator_style = "slant",
+				mode = "buffers",               -- Treat each buffer as a tab in the UI
 				show_buffer_close_icons = false,
 				show_close_icon = false,
+				always_show_bufferline = true,  -- Keep bufferline visible
 			},
 		},
 	},
 
-	-- filename
-	{
-		"b0o/incline.nvim",
-		dependencies = { "craftzdog/solarized-osaka.nvim" },
-		event = "BufReadPre",
-		priority = 1200,
-		config = function()
-			local colors = require("solarized-osaka.colors").setup()
-			require("incline").setup({
-				highlight = {
-					groups = {
-						InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
-						InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
-					},
-				},
-				window = { margin = { vertical = 0, horizontal = 1 } },
-				hide = {
-					cursorline = true,
-				},
-				render = function(props)
-					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-					if vim.bo[props.buf].modified then
-						filename = "[+] " .. filename
-					end
-
-					local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-					return { { icon, guifg = color }, { " " }, { filename } }
-				end,
-			})
-		end,
-	},
-
-	-- statusline
 	{
 		"nvim-lualine/lualine.nvim",
 		opts = function(_, opts)
 			local LazyVim = require("lazyvim.util")
-			opts.sections.lualine_c[4] = {
-				LazyVim.lualine.pretty_path({
-					length = 0,
-					relative = "cwd",
-					modified_hl = "MatchParen",
-					directory_hl = "",
-					filename_hl = "Bold",
-					modified_sign = "",
-					readonly_icon = " 󰌾 ",
-				}),
+
+			-- Custom Git status component
+			local function git_status()
+				-- Initialize each status with emoji and placeholder for counts
+				local statuses = {
+					stashed = " 📦 ",
+					conflicted = " ⚔️ ",
+					ahead = " 🏎️ 💨 ",
+					behind = " 🐢 ",
+					diverged = " 🔱 🏎️ 💨 🐢 ",
+					untracked = " 🛤️ ",
+					modified = " 📝 ",
+					staged = " 🗃️ ",
+					renamed = " 📛 ",
+					deleted = " 🗑️ ",
+				}
+
+				-- Retrieve counts (simulated here; replace with actual git status commands or integrations as needed)
+				-- You may need to use a plugin like `gitsigns.nvim` for real-time data.
+				local git_info = require("gitsigns").status_dict or {}
+
+				-- Format each status with counts
+				local status_str = ""
+				if git_info.staged > 0 then status_str = status_str .. statuses.staged .. "×" .. git_info.staged .. " " end
+				if git_info.modified > 0 then status_str = status_str .. statuses.modified .. "×" .. git_info.modified .. " " end
+				if git_info.untracked > 0 then status_str = status_str .. statuses.untracked .. " " end
+				if git_info.conflicted > 0 then status_str = status_str .. statuses.conflicted .. " " end
+				if git_info.renamed > 0 then status_str = status_str .. statuses.renamed .. "×" .. git_info.renamed .. " " end
+				if git_info.deleted > 0 then status_str = status_str .. statuses.deleted .. "×" .. git_info.deleted .. " " end
+				if git_info.ahead > 0 then status_str = status_str .. statuses.ahead .. "×" .. git_info.ahead .. " " end
+				if git_info.behind > 0 then status_str = status_str .. statuses.behind .. "×" .. git_info.behind .. " " end
+
+				-- Format diverged status if ahead and behind both have counts
+				if git_info.ahead > 0 and git_info.behind > 0 then
+					status_str = status_str .. statuses.diverged
+						:gsub("${ahead_count}", git_info.ahead)
+						:gsub("${behind_count}", git_info.behind)
+				end
+
+				-- Add stashed (simulated here as no gitsigns support for stashes)
+				if git_info.stashed then status_str = status_str .. statuses.stashed .. " " end
+
+				return status_str ~= "" and status_str or "No Changes"
+			end
+
+			-- Update lualine_c to include git status with emojis
+			opts.sections.lualine_c = {
+				-- {
+				-- 	"branch",
+				-- 	icon = "",
+				-- },
+				{
+					git_status, -- Show git status with emoji
+					color = { fg = "#ffffff", bg = "#333333" },  -- Adjust colors as needed
+				},
+				{
+					LazyVim.lualine.pretty_path({
+						length = 0,
+						relative = "cwd",
+						modified_hl = "MatchParen",
+						directory_hl = "",
+						filename_hl = "Bold",
+						modified_sign = "",
+						readonly_icon = " 󰌾 ",
+					}),
+				},
 			}
 		end,
 	},

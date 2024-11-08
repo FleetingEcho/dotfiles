@@ -1,4 +1,4 @@
-local discipline = require("craftzdog.discipline")
+local discipline = require("fleetingsound.discipline")
 
 discipline.cowboy()
 
@@ -64,11 +64,11 @@ keymap.set("n", "<C-j>", function()
 end, opts)
 
 keymap.set("n", "<leader>r", function()
-	require("craftzdog.hsl").replaceHexWithHSL()
+	require("fleetingsound.hsl").replaceHexWithHSL()
 end)
 
 keymap.set("n", "<leader>i", function()
-	require("craftzdog.lsp").toggleInlayHints()
+	require("fleetingsound.lsp").toggleInlayHints()
 end)
 
 -- +p to paste

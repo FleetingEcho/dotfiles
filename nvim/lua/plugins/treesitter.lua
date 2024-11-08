@@ -9,7 +9,7 @@ return {
 				"cmake",
 				"cpp",
 				"css",
-				"fish",
+				"zsh",
 				"gitignore",
 				"go",
 				"graphql",

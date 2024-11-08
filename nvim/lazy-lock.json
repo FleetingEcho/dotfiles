@@ -47,7 +47,7 @@
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "refactoring.nvim": { "branch": "master", "commit": "53ed6854e0bba64d467c58e87084dcf8b1c22d36" },
-  "solarized-osaka.nvim": { "branch": "main", "commit": "126d394c0c979a99206214a2b6b8c86e456c9c0f" },
+  "sonokai": { "branch": "master", "commit": "3dcd97c0c5e4118bc171df6ba33800dfd9524a00" },
   "symbols-outline.nvim": { "branch": "master", "commit": "564ee65dfc9024bdde73a6621820866987cbb256" },
   "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "3d3cd95e4a4135c250faf83dd5ed61b8e5502b86" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "626998e5c1b71c130d8bc6cf7abb6709b98287bb" },
