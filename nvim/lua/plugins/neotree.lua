@@ -5,19 +5,18 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
+    "akinsho/nvim-bufferline.lua", -- Ensure bufferline is included
   },
   keys = {
-    {
-      "<leader>e",
-      "<cmd>Neotree toggle<CR>",
-      desc = "Toggle Neo-tree",
-    },
+    { "<C-Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
+    { "<C-S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous buffer" },
   },
   config = function()
     require("neo-tree").setup({
+      -- Neo-tree configuration here
       filesystem = {
         filtered_items = {
-          visible = true,  -- 确保隐藏文件可见
+          visible = true,
           hide_dotfiles = false,
           hide_gitignored = true,
           hide_by_name = {
@@ -44,9 +43,8 @@ return {
       window = {
         position = "left",
         width = 30,
-        title = "",  -- 这里将标题设置为空，隐藏标题栏
+        title = "",
         mappings = {
-          -- 自定义一些快捷键
           ["<CR>"] = "open",
           ["<Tab>"] = "preview",
           ["o"] = "open",
@@ -58,5 +56,6 @@ return {
         },
       },
     })
+    require("bufferline").setup {} -- Ensure Bufferline setup is called
   end,
 }
