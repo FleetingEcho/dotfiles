@@ -52,6 +52,8 @@ return {
 			opts.presets.lsp_doc_border = true
 		end,
 	},
+	{"lewis6991/gitsigns.nvim"},
+	{"sindrets/diffview.nvim" },
 
 	{
 		"rcarriga/nvim-notify",

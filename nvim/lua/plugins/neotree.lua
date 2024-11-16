@@ -5,18 +5,17 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-    "akinsho/nvim-bufferline.lua", -- Ensure bufferline is included
   },
   keys = {
-    { "<C-Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
-    { "<C-S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous buffer" },
+    { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Toggle Neo-tree" },
+    { "<C-Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
+    { "<C-S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
   },
   config = function()
     require("neo-tree").setup({
-      -- Neo-tree configuration here
       filesystem = {
         filtered_items = {
-          visible = true,
+          visible = true,  -- Ensure hidden files are visible
           hide_dotfiles = false,
           hide_gitignored = true,
           hide_by_name = {
@@ -43,7 +42,7 @@ return {
       window = {
         position = "left",
         width = 30,
-        title = "",
+        title = "",  -- Hide title bar
         mappings = {
           ["<CR>"] = "open",
           ["<Tab>"] = "preview",
@@ -56,6 +55,5 @@ return {
         },
       },
     })
-    require("bufferline").setup {} -- Ensure Bufferline setup is called
   end,
 }
