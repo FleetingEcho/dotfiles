@@ -1,0 +1,37 @@
+[core]
+    pager = "delta --dark --paging=always --features side-by-side --line-numbers --hyperlinks --hyperlinks-file-link-format='lazygit-edit://{path}:{line}'"
+
+[delta]
+    side-by-side = true
+    # syntax-theme = "Github"
+    navigate = true
+    line-numbers = true
+    whitespace-error-style = "22 reverse"
+
+# [delta "syntax"]
+#     python = "Github"
+#     javascript = "Github"
+#     markdown = "Nord"
+
+[merge]
+    conflictStyle = zdiff3
+
+[credential]
+    helper = osxkeychain
+
+[interactive]
+    diffFilter = "delta --color-only"
+
+
+# echo 'export GIT_CONFIG_GLOBAL=~/.config/lazygit/.gitconfig' >> ~/.zshrc
+# source ~/.zshrc
+# git config --list --show-origin
+
+
+# Add to zshrc
+# export GIT_CONFIG_GLOBAL="~/.gitconfig"export GIT_CONFIG_GLOBAL=~/.config/lazygit/.gitconfig
+# export LAZYGIT_CONFIG_FILE="~/.config/lazygit/config.yml"
+# export XDG_CONFIG_HOME="~/.config/"
+
+
+# Add the content to ~/.gitconfig

@@ -1,0 +1,33 @@
+git:
+  paging:
+    colorArg: always
+    pager: "delta --dark --syntax-theme=Nord --paging=never --features side-by-side --line-numbers --hyperlinks --hyperlinks-file-link-format='lazygit-edit://{path}:{line}' --minus-style='normal #5a3a3a' --minus-non-emph-style='normal #5a3a3a' --minus-emph-style='normal #7d5a5a' --minus-empty-line-marker-style='normal #5a3a3a' --zero-style='syntax' --plus-style='syntax #2e4a2e' --plus-non-emph-style='syntax #2e4a2e' --plus-emph-style='syntax #006000' --plus-empty-line-marker-style='normal #2e4a2e'"
+  diff:
+    command: "git -c core.pager='delta --dark diff"
+
+gui:
+  sidePanelWidth: 0.15
+  theme:
+    activeBorderColor:
+      - "#a6da95"
+      - bold
+    inactiveBorderColor:
+      - "#a5adcb"
+    optionsTextColor:
+      - "#8aadf4"
+    selectedLineBgColor:
+      - "#363a4f"
+    cherryPickedCommitBgColor:
+      - "#494d64"
+    cherryPickedCommitFgColor:
+      - "#b7bdf8"
+    unstagedChangesColor:
+      - "#ed8796"
+    defaultFgColor:
+      - "#cad3f5"
+    searchingActiveBorderColor:
+      - "#eed49f"
+  branchColors:
+    "release": "#eed49f"
+    "hotfix": "#ed8796"
+    "feature": "#a6da95"
