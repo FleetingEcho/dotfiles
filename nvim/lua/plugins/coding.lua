@@ -86,24 +86,40 @@ return {
 			position = "right",
 		},
 	},
-
 	{
 		"nvim-cmp",
-		dependencies = { "hrsh7th/cmp-emoji" ,
-		{
-      "Exafunction/codeium.nvim",
-      cmd = "Codeium",
-      build = ":Codeium Auth",
-      opts = {},
-    }
-	},
+		optional = true,
+		dependencies = {
+			{
+				"tzachar/cmp-tabnine",
+				build = {
+					LazyVim.is_win() and "pwsh -noni .\\install.ps1" or "./install.sh",
+				},
+				dependencies = "hrsh7th/nvim-cmp",
+				opts = {
+					max_lines = 1000,
+					max_num_results = 3,
+					sort = true,
+				},
+				config = function(_, opts)
+					require("cmp_tabnine.config"):setup(opts)
+				end,
+			},
+		},
+		---@param opts cmp.ConfigSchema
 		opts = function(_, opts)
-			table.insert(opts.sources, { name = "emoji" })
 			table.insert(opts.sources, 1, {
-				name = "codeium",
+				name = "cmp_tabnine",
 				group_index = 1,
 				priority = 100,
 			})
+
+			opts.formatting.format = LazyVim.inject.args(opts.formatting.format, function(entry, item)
+				-- Hide percentage in the menu
+				if entry.source.name == "cmp_tabnine" then
+					item.menu = ""
+				end
+			end)
 		end,
-	},
+	}
 }
