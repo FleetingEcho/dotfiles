@@ -1,0 +1,21 @@
+{
+    "providers": {
+    "my-provider":{
+        "baseUrl": "https://api.deepseek.com/v1",
+        "api": "openai-responses",
+        "apiKey": "xxxxxxxxxxxxxxxx",
+        "models": [
+          {
+            "id": "deepseek-v4-flash",
+            "name": "DeepSeek V4 Flash",
+            "input": [
+              "text",
+              "image"
+            ],
+            "contextWindow": 1000000,
+            "maxTokens": 384000
+          }
+        ]
+      }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "lastChangelogVersion": "0.84.1",
+  "theme": "tokyo-night",
+  "steeringMode": "all",
+  "followUpMode": "all",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-web-access",
+    "npm:@tintinweb/pi-subagents",
+    "git:github.com/algal/pi-openai-server-compaction",
+    "git:github.com/FleetingEcho/pi-handoff",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-todo"
+  ],
+  "defaultProvider": "my-provider",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "medium"
+}
